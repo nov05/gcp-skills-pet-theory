@@ -50,10 +50,12 @@ async function fetchLocalData(file) {
 async function getPageInfo() {
   // Changed by nov05, 2026-05-16
   // const info = await fetchLocalData(REST_API_SERVICE)
-  const api = window.REST_API_SERVICE;
+  const api = (window.REST_API_SERVICE || "").trim();
   const year = window.YEAR || 2020;
+
   let url;
-  if (api && api !== "undefined") {
+
+  if (api) {
     const base = api.replace(/\/$/, "");
     url = `${base}/${year}`;
   } else {
