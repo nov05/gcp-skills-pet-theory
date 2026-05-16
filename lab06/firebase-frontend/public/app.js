@@ -50,9 +50,12 @@ async function fetchLocalData(file) {
 async function getPageInfo() {
   // Changed by nov05, 2026-05-16
   // const info = await fetchLocalData(REST_API_SERVICE)
+  const api = window.REST_API_SERVICE;
+  const year = window.YEAR || 2020;
   let url;
-  if (window.REST_API_SERVICE && window.REST_API_SERVICE !== "") {
-    url = `${window.REST_API_SERVICE}/${window.YEAR}`;
+  if (api && api !== "undefined") {
+    const base = api.replace(/\/$/, "");
+    url = `${base}/${year}`;
   } else {
     url = "data/netflix.json";
   }
