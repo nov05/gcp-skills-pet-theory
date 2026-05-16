@@ -13,7 +13,10 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <!-- Link to app.js with defer till HTML render -->
 	{{!-- Added by nov05, 2026-05-15 --}}
-	<script>window.YEAR = "{{year}}";</script> 
+	<script>
+		window.YEAR = "{{year}}";
+		window.REST_API_SERVICE = "{{restApiService}}";
+	</script>
     <script defer src="app.js"></script>
 	</head>
 	<body class="is-preload">

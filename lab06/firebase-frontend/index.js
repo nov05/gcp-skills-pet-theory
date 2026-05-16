@@ -20,14 +20,16 @@ const port = process.env.PORT || 8080;
 
 // show the default page
 app.get('', (req, res) => {
-  res.render('index');
+  res.render('index', {
+    restApiService: process.env.REST_API_SERVICE
+  });
 })
 
 // Added by nov05, 2026-05-15
 app.get('/:year', (req, res) => {
-  const year = req.params.year;
   res.render('index', {
-    year: year
+    year: req.params.year,
+    restApiService: process.env.REST_API_SERVICE
   });
 });
 

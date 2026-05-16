@@ -1,10 +1,10 @@
 // Title: GSP344 Challenge Lab
 // Author: Rich Rose
 
-const REST_API_SERVICE = "data/netflix.json"
+// const REST_API_SERVICE = "data/netflix.json"
 //const REST_API_SERVICE = "https://XXXX-SERVICE.run.app/2020" 
 
-function setTileData(items){
+function setTileData(items) {
   const dynamicView = items.map((item) => {
     return `<tr>
         <td>${item.title}</td>
@@ -27,17 +27,17 @@ function setTileData(items){
         <th>Duration</th>
         <th>Date</th>
       </thead><tbody>`;
-      
+
   let footer = `</tbody></table>
 		</div>`
 
-  return (header + dynamicView.join("") + footer);  
+  return (header + dynamicView.join("") + footer);
 }
 
 
 async function fetchLocalData(file) {
   try {
-    const response = await(fetch(file));
+    const response = await (fetch(file));
     const local = await response.json();
     return local;
   }
@@ -47,17 +47,15 @@ async function fetchLocalData(file) {
 }
 
 
-async function getPageInfo(){
-  // Changed by nov05, 2026-05-15
+async function getPageInfo() {
+  // Changed by nov05, 2026-05-16
   // const info = await fetchLocalData(REST_API_SERVICE)
-  const year = window.YEAR || "2020";
   let url;
-  if (REST_API_SERVICE === "data/netflix.json") {
-    url = REST_API_SERVICE;
+  if (window.REST_API_SERVICE && window.REST_API_SERVICE !== "") {
+    url = `${window.REST_API_SERVICE}/${window.YEAR}`;
   } else {
-    url = `${REST_API_SERVICE}/${year}`;
+    url = "data/netflix.json";
   }
-  const info = await fetchLocalData(url);
   htmlContent = document.querySelector('#info');
   htmlContent.innerHTML = setTileData(info.content);
 }
