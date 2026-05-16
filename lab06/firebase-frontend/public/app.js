@@ -52,9 +52,7 @@ async function getPageInfo() {
   // const info = await fetchLocalData(REST_API_SERVICE)
   const api = (window.REST_API_SERVICE || "").trim();
   const year = window.YEAR || 2020;
-
   let url;
-
   if (api) {
     const base = api.replace(/\/$/, "");
     url = `${base}/${year}`;
