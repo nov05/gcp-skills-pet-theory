@@ -51,7 +51,13 @@ async function getPageInfo(){
   // Changed by nov05, 2026-05-15
   // const info = await fetchLocalData(REST_API_SERVICE)
   const year = window.YEAR || "2020";
-  const info = await fetchLocalData(`${REST_API_SERVICE}/${year}`);
+  let url;
+  if (REST_API_SERVICE === "data/netflix.json") {
+    url = REST_API_SERVICE;
+  } else {
+    url = `${REST_API_SERVICE}/${year}`;
+  }
+  const info = await fetchLocalData(url);
   htmlContent = document.querySelector('#info');
   htmlContent.innerHTML = setTileData(info.content);
 }
