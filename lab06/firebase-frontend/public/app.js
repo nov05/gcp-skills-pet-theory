@@ -28,7 +28,6 @@ function setTileData(items){
         <th>Date</th>
       </thead><tbody>`;
       
-
   let footer = `</tbody></table>
 		</div>`
 
@@ -49,7 +48,10 @@ async function fetchLocalData(file) {
 
 
 async function getPageInfo(){
-  const info = await fetchLocalData(REST_API_SERVICE)
+  // Changed by nov05, 2026-05-15
+  // const info = await fetchLocalData(REST_API_SERVICE)
+  const year = window.YEAR || "2020";
+  const info = await fetchLocalData(`${REST_API_SERVICE}/${year}`);
   htmlContent = document.querySelector('#info');
   htmlContent.innerHTML = setTileData(info.content);
 }

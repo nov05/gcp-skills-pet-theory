@@ -13,7 +13,6 @@ app.listen(port, () => {
 
 app.get('/', async (req, res) => {
   res.json({status: 'Netflix Dataset! Make a query.'});
-
 })
 
 //--------------------------------------------------------------
@@ -21,12 +20,10 @@ app.get('/', async (req, res) => {
 // Year query
 app.get('/:year', async (req, res) => {
   const year = req.params.year;
-  
   const query = db.collection('data').where('release_year', '==', year);
   const querySnapshot = await query.get();
   if (querySnapshot.size > 0) {
     let docs = querySnapshot.docs.map(doc => doc.data());
-
     // Enable Cors
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");	  

@@ -23,5 +23,13 @@ app.get('', (req, res) => {
   res.render('index');
 })
 
+// Added by nov05, 2026-05-15
+app.get('/:year', (req, res) => {
+  const year = req.params.year;
+  res.render('index', {
+    year: year
+  });
+});
+
 // Listen on a network port
 app.listen(port, () => console.log(`Listening on:${port}`))
