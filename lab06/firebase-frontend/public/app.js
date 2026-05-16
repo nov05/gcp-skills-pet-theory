@@ -56,6 +56,7 @@ async function getPageInfo() {
   } else {
     url = "data/netflix.json";
   }
+  const info = await fetchLocalData(url);
   htmlContent = document.querySelector('#info');
   htmlContent.innerHTML = setTileData(info.content);
 }
